@@ -3,7 +3,7 @@ services:
   - docker
 
  before_install:
-  - docker build -t faizan/docker-react -f Dockerfile.dev .
+  - docker build -t Faizan61/docker-react -f Dockerfile.dev .
 
   script:
     - docker run faizan/docker-react npm run test -- --coverage
