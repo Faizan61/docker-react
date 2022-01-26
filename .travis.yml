@@ -1,3 +1,4 @@
+language: generic
 sudo: required
 services: 
   - docker
@@ -6,4 +7,15 @@ services:
   - docker build -t Faizan61/docker-react -f Dockerfile.dev .
 
   script:
-    - docker run faizan/docker-react npm run test -- --coverage
+    - docker run -e CI=true Faizan61/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket-name: "docker-react"
+  bucket-path: "elasticbeanstalk-us-east-1-212249984003"
+
+  on:
+    branch: master
